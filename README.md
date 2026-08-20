@@ -1,25 +1,25 @@
 # Project Playbook
 
-`project-playbook` is an agent skill that turns an unfamiliar repository into an evidence-based guide for studying, running, and extending it. It covers frontend, backend, data, operations, tests, and any verifiable AI-development provenance.
+`repo-look` is an agent skill that turns an unfamiliar repository into an evidence-based guide for studying, running, and extending it. It covers frontend, backend, data, operations, tests, and any verifiable AI-development provenance.
 
 ## Install
 
-Copy the `project-playbook` directory into the skills directory used by your terminal agent, preserving its contents:
+Copy the `repo-look` directory into the skills directory used by your terminal agent, preserving its contents:
 
 ```text
-project-playbook/
+repo-look/
 ├── SKILL.md
 └── templates/playbook_template.md
 ```
 
-For Claude Code, a project-local installation is commonly `.claude/skills/project-playbook/`. For Antigravity or another agent, use that tool's configured skill directory. The skill is deliberately self-contained and does not require scripts, a network connection, or another agent.
+For Claude Code, a project-local installation is commonly `.claude/skills/repo-look/`. For Antigravity or another agent, use that tool's configured skill directory. The skill is deliberately self-contained and does not require scripts, a network connection, or another agent.
 
 ## Use
 
 Ask your agent something like:
 
 ```text
-Use the project-playbook skill to deeply analyze this repository and save the result as docs/PLAYBOOK.md.
+Use the repo-look skill to deeply analyze this repository and save the result as docs/PLAYBOOK.md.
 ```
 
 Modes can be requested in natural language:
