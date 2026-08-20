@@ -1,32 +1,189 @@
-# Project Playbook
+## Installation
 
-`project-playbook` is an agent skill that turns an unfamiliar repository into an evidence-based guide for studying, running, and extending it. It covers frontend, backend, data, operations, tests, and any verifiable AI-development provenance.
+### Quick install
 
-## Install
+Install `project-playbook` globally for both Claude Code and Antigravity:
 
-Copy the `project-playbook` directory into the skills directory used by your terminal agent, preserving its contents:
-
-```text
-project-playbook/
-├── SKILL.md
-└── templates/playbook_template.md
+```bash
+npx skills add Aryan-git13/project-playbook \
+  --skill project-playbook \
+  -g \
+  -a claude-code \
+  -a antigravity
 ```
 
-For Claude Code, a project-local installation is commonly `.claude/skills/project-playbook/`. For Antigravity or another agent, use that tool's configured skill directory. The skill is deliberately self-contained and does not require scripts, a network connection, or another agent.
+### Install for Claude Code only
 
-## Use
-
-Ask your agent something like:
-
-```text
-Use the project-playbook skill to deeply analyze this repository and save the result as docs/PLAYBOOK.md.
+```bash
+npx skills add Aryan-git13/project-playbook \
+  --skill project-playbook \
+  -g \
+  -a claude-code
 ```
 
-Modes can be requested in natural language:
+### Install for Antigravity only
 
-- `quick`: orientation for a new codebase.
-- `deep`: complete architecture and learning guide.
-- `onboarding`: setup and first-contribution guide.
-- `ai-log`: evidence-based AI tools, models, prompts, and rules inventory.
+```bash
+npx skills add Aryan-git13/project-playbook \
+  --skill project-playbook \
+  -g \
+  -a antigravity
+```
 
-The playbook reports claims as Confirmed, Inferred, or Not found, and must not disclose secret values from environment files or credentials.
+### Install into the current project
+
+Remove `-g` to install the skill for the current project only:
+
+```bash
+npx skills add Aryan-git13/project-playbook \
+  --skill project-playbook \
+  -a claude-code
+```
+
+### CLI flags
+
+| Flag             | Meaning                 |
+| ---------------- | ----------------------- |
+| `-g`             | Install globally        |
+| `-a claude-code` | Target Claude Code      |
+| `-a antigravity` | Target Antigravity      |
+| `--skill <name>` | Select a specific skill |
+
+---
+
+## Verify Installation
+
+Restart your agent after installation if required.
+
+Then check the available skills:
+
+```text
+/skills
+```
+
+You should see:
+
+```text
+project-playbook
+```
+
+You can also test the skill directly:
+
+```text
+Create a playbook for this project
+```
+
+---
+
+## Usage
+
+Use natural language:
+
+```text
+Create a playbook for this project
+```
+
+```text
+Prepare me for an interview about this repo
+```
+
+```text
+Explain what each part of this codebase does
+```
+
+```text
+Generate frontend and backend playbooks
+```
+
+Or invoke it explicitly:
+
+```text
+/project-playbook --mode interview --split both --save
+/project-playbook --split backend --depth file
+/project-playbook --path ./apps/web --mode quick
+```
+
+---
+
+## Output
+
+Project Playbook can generate:
+
+| File                   | Contents                                                                              |
+| ---------------------- | ------------------------------------------------------------------------------------- |
+| `PLAYBOOK.md`          | Master index and recommended reading order                                            |
+| `PLAYBOOK-FRONTEND.md` | Frontend architecture, stack, responsibility map, and study blocks                    |
+| `PLAYBOOK-BACKEND.md`  | Backend architecture, data model, responsibility map, and study blocks                |
+| `PLAYBOOK-CONTRACT.md` | Frontend ↔ backend API surface, authentication flow, data flow, and full-stack traces |
+
+Example:
+
+```text
+project/
+├── PLAYBOOK.md
+├── PLAYBOOK-FRONTEND.md
+├── PLAYBOOK-BACKEND.md
+└── PLAYBOOK-CONTRACT.md
+```
+
+---
+
+## Requirements
+
+For the installation command to work:
+
+1. The GitHub repository must be public.
+2. `SKILL.md` must be discoverable in the repository.
+3. The `SKILL.md` frontmatter must contain:
+
+```yaml
+---
+name: project-playbook
+description: Turn any codebase into an interview-ready frontend, backend, and full-stack playbook.
+---
+```
+
+The `name` must match:
+
+```text
+--skill project-playbook
+```
+
+The repository is:
+
+```text
+https://github.com/Aryan-git13/project-playbook
+```
+
+---
+
+## Update
+
+```bash
+npx skills update project-playbook
+```
+
+## Remove
+
+```bash
+npx skills remove project-playbook
+```
+
+---
+
+## Manual Installation
+
+### Claude Code
+
+```bash
+git clone https://github.com/Aryan-git13/project-playbook.git
+mkdir -p ~/.claude/skills
+cp -r project-playbook ~/.claude/skills/project-playbook
+```
+
+### Antigravity
+
+```bash
+git clone https://github.com/Aryan-git13/project-playbook.git
+cp -r project-playbook ~/.antigravity/skills/project-playbook
+```
